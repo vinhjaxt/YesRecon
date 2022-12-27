@@ -42,6 +42,10 @@ git clone --depth 1 https://github.com/blechschmidt/massdns.git
 sh -c 'cd massdns && make'
 mv "${DIR}/massdns/bin/massdns" "${DIR}/bin/massdns"
 curl -L -o "${DIR}/bin/puredns" https://github.com/vinhjaxt/puredns/releases/download/ActionBuild_2022.12.27_08-24-58/puredns
+# wordlist
+curl -L -o "${DIR}/puredns-all.txt" https://gist.githubusercontent.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
+git clone --depth 1 --branch master https://github.com/vortexau/dnsvalidator
+sh -c 'cd dnsvalidator && python3 setup.py install'
 
 # dnscan
 git clone --depth 1 --branch master https://github.com/rbsec/dnscan "${DIR}/dnscan"
@@ -66,17 +70,18 @@ chmod +x "${DIR}/bin/" -R
 export PATH="$PATH:${DIR}/bin"
 
 # test tools
-httpx --help || exit 1
+httpx --help
 
-amass --help || exit 1
-subfinder --help || exit 1
-findomain --help || exit 1
+amass --help
+subfinder --help
+findomain --help
 
-puredns --help || exit 1
-massdns --help || exit 1
-python3 "${DIR}/dnscan/dnscan.py" --help || exit 1
-shuffledns -h || exit 1
+puredns --help
+dnsvalidator --help
+massdns --help
+python3 "${DIR}/dnscan/dnscan.py" --help
+shuffledns -h
 
-gotator --help || exit 1
-altdns --help || exit 1
+gotator --help
+altdns --help
 dmut --help
