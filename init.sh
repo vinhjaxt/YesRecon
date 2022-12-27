@@ -54,6 +54,9 @@ git clone --depth 1 --branch master https://github.com/rbsec/dnscan "${DIR}/dnsc
 sh -c "cd '${DIR}/dnscan'; python3 -m pip install -r requirements.txt"
 
 # shuffledns
+curl -L -o "${DIR}/shuffledns_subdomains.txt" https://raw.githubusercontent.com/assetnote/commonspeak2-wordlists/master/subdomains/subdomains.txt
+curl -L -o "${DIR}/shuffledns_2m-subdomains.txt" https://wordlists-cdn.assetnote.io/data/manual/2m-subdomains.txt
+curl -L -o "${DIR}/shuffledns_best-dns-wordlist.txt" https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
 CURRENT_TMP="${TEMP_DIR}/shuffledns_linux_amd64"
 curl -L -o "${CURRENT_TMP}.zip" https://github.com/projectdiscovery/shuffledns/releases/download/v1.0.8/shuffledns_1.0.8_linux_amd64.zip
 unzip "${CURRENT_TMP}.zip" -d "${CURRENT_TMP}"
