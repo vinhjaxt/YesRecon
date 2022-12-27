@@ -37,8 +37,10 @@ unzip "${CURRENT_TMP}.zip" -d "${CURRENT_TMP}"
 find "${CURRENT_TMP}/" -type f -name 'findomain' -exec mv {} "${DIR}/bin/" \;
 
 # puredns
+# https://github.com/vinhjaxt/massdns/releases/download/ActionBuild_2022.12.27_08-49-45/massdns
 git clone --depth 1 https://github.com/blechschmidt/massdns.git
-sh -c 'cd massdns && make && ls -alvh && ls -alvh ./bin'
+sh -c 'cd massdns && make'
+mv "${DIR}/massdns/bin/massdns" "${DIR}/bin/massdns"
 curl -L -o "${DIR}/bin/puredns" https://github.com/vinhjaxt/puredns/releases/download/ActionBuild_2022.12.27_08-24-58/puredns
 
 # dnscan
@@ -70,10 +72,11 @@ amass --help || exit 1
 subfinder --help || exit 1
 findomain --help || exit 1
 
-puredns --help
+puredns --help || exit 1
+massdns --help || exit 1
 python3 "${DIR}/dnscan/dnscan.py" --help || exit 1
-shuffledns -h
+shuffledns -h || exit 1
 
-gotator --help
-altdns --help
-dmut --help
+gotator --help || exit 1
+altdns --help || exit 1
+dmut --help || exit 1
