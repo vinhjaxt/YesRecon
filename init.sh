@@ -78,19 +78,22 @@ curl -L -o "${DIR}/bin/dmut" https://github.com/vinhjaxt/dmut/releases/download/
 chmod +x "${DIR}/bin/" -R
 export PATH="$PATH:${DIR}/bin"
 
+echo '=========================================================================='
+
 # test tools
-httpx --help
+httpx --help || echo 'httpx not installed'
 
-amass --help
-subfinder --help
-findomain --help
+amass --help || echo 'amass not installed'
+subfinder --help || echo 'subfinder not installed'
+findomain --help || echo 'findomain not installed'
 
-puredns --help
-dnsvalidator --help
-massdns --help
-python3 "${DIR}/dnscan/dnscan.py" --help
-shuffledns -h
+puredns --help || echo 'puredns not installed'
+dnsvalidator --help || echo 'dnsvalidator not installed'
+massdns --help || echo 'massdns not installed'
+python3 "${DIR}/dnscan/dnscan.py" --help || echo 'dnscan not installed'
+shuffledns -h || echo 'shuffledns not installed'
 
-gotator --help
-altdns --help
-dmut --help
+gotator --help || echo 'gotator not installed'
+altdns --help || echo 'altdns not installed'
+dmut --help || echo 'dmut not installed'
+
