@@ -36,17 +36,44 @@ curl -L -o "${CURRENT_TMP}.zip" https://github.com/Findomain/Findomain/releases/
 unzip "${CURRENT_TMP}.zip" -d "${CURRENT_TMP}"
 find "${CURRENT_TMP}/" -type f -name 'findomain' -exec mv {} "${DIR}/bin/" \;
 
+# puredns
+git clone --depth 1 https://github.com/blechschmidt/massdns.git
+sh -c 'cd massdns && make && ls -alvh && ls -alvh ./bin'
+curl -L -o "${DIR}/bin/puredns" https://github.com/vinhjaxt/puredns/releases/download/ActionBuild_2022.12.27_08-24-58/puredns
 
 # dnscan
 git clone --depth 1 --branch master https://github.com/rbsec/dnscan "${DIR}/dnscan"
 sh -c "cd '${DIR}/dnscan'; python3 -m pip install -r requirements.txt"
+
+# shuffledns
+CURRENT_TMP="${TEMP_DIR}/shuffledns_linux_amd64"
+curl -L -o "${CURRENT_TMP}.zip" https://github.com/projectdiscovery/shuffledns/releases/download/v1.0.8/shuffledns_1.0.8_linux_amd64.zip
+unzip "${CURRENT_TMP}.zip" -d "${CURRENT_TMP}"
+find "${CURRENT_TMP}/" -type f -name 'shuffledns' -exec mv {} "${DIR}/bin/" \;
+
+# gotator
+curl -L -o "${DIR}/bin/gotator" https://github.com/vinhjaxt/gotator/releases/download/ActionBuild_2022.12.27_08-31-18/gotator
+
+# altdns
+python3 -m pip install py-altdns==1.0.2
+
+# dmut
+curl -L -o "${DIR}/bin/dmut" https://github.com/vinhjaxt/dmut/releases/download/ActionBuild_2022.12.27_08-39-56/dmut
 
 chmod +x "${DIR}/bin/" -R
 export PATH="$PATH:${DIR}/bin"
 
 # test tools
 httpx --help || exit 1
+
 amass --help || exit 1
 subfinder --help || exit 1
 findomain --help || exit 1
+
+puredns --help
 python3 "${DIR}/dnscan/dnscan.py" --help || exit 1
+shuffledns -h
+
+gotator --help
+altdns --help
+dmut --help
