@@ -41,12 +41,12 @@ find "${CURRENT_TMP}/" -type f -name 'findomain' -exec mv {} "${DIR}/bin/" \;
 git clone --depth 1 --branch master https://github.com/rbsec/dnscan "${DIR}/dnscan"
 sh -c "cd '${DIR}/dnscan'; python3 -m pip install -r requirements.txt"
 
-chmod +x "${DIR}/bin/" -R
+#chmod +x "${DIR}/bin/" -R
 export PATH="$PATH:${DIR}/bin"
 
 # test tools
-httpx --help | exit 1
-amass --help | exit 1
-subfinder --help | exit 1
-findomain --help | exit 1
-python3 "${DIR}/dnscan/dnscan.py" --help | exit 1
+httpx --help || exit 1
+amass --help || exit 1
+subfinder --help || exit 1
+findomain --help || exit 1
+python3 "${DIR}/dnscan/dnscan.py" --help || exit 1
