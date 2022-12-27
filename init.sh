@@ -8,7 +8,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
-sudo apt update -y && sudo apt install -y unzip curl python3 python3-pip
+sudo apt update -y && sudo apt install -y git unzip curl python3 python3-pip
 
 TEMP_DIR="$(mktemp -d)"
 
