@@ -1,0 +1,21 @@
+name: Run script
+
+on:
+  issues:
+    types: [opened, reopened, closed, labeled, unlabeled]
+  issue_comment:
+    types: [created, edited, deleted]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        lfs: false
+    - name: Run script
+      run: |
+        bash ./init.sh
