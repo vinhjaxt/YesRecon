@@ -79,4 +79,4 @@ shuffledns -h || exit 1
 
 gotator --help || exit 1
 altdns --help || exit 1
-dmut --help || exit 1
+dmut --help
