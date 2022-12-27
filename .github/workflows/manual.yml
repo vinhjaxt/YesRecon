@@ -18,7 +18,7 @@ jobs:
         lfs: false
     - name: Build docker
       run: |
-        docker build -t "yes-recon:latest" "${DIR}"
+        docker build -t "yes-recon:latest" "."
         docker image ls
         echo Saving image..
         docker save --output yes-recon.tar yes-recon:latest
