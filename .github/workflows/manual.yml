@@ -18,12 +18,12 @@ jobs:
         lfs: false
     - name: Build docker
       run: |
-        docker build -t "YesRecon:latest" "${DIR}"
+        docker build -t "yes-recon:latest" "${DIR}"
         docker image ls
         echo Saving image..
-        docker save --output YesRecon.tar YesRecon:latest
-        sha256sum YesRecon.tar > checksum.txt
-        split --verbose -b1G YesRecon.tar split_YesRecon.tar.
+        docker save --output yes-recon.tar yes-recon:latest
+        sha256sum yes-recon.tar > checksum.txt
+        split --verbose -b1G yes-recon.tar split_yes-recon.tar.
 
 # Create release
     - name: Generate release tag
