@@ -8,7 +8,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
-sudo apt install -y unzip curl python3 python3-pip
+sudo apt update -y && sudo apt install -y unzip curl python3 python3-pip
 
 TEMP_DIR="$(mktemp -d)"
 
@@ -69,6 +69,10 @@ curl -L -o "${DIR}/bin/gotator" https://github.com/vinhjaxt/gotator/releases/dow
 python3 -m pip install py-altdns==1.0.2
 
 # dmut
+curl -L -o "${DIR}/bin/dnsfaster" https://github.com/vinhjaxt/dnsfaster/releases/download/ActionBuild_2022.12.27_09-40-39/dnsfaster
+chmod +x "${DIR}/bin/dnsfaster"
+curl -L -o "${DIR}/dmut_public_nameserver.txt" https://public-dns.info/nameserver/us.txt
+dnsfaster --domain google.com.vn --in "${DIR}/dmut_public_nameserver.txt" --out "${DIR}/dmut_nameserver.txt" --tests 1000 --workers 50 --filter-time 400 --filter-errors 50 --filter-rate 90 --save-dns
 curl -L -o "${DIR}/bin/dmut" https://github.com/vinhjaxt/dmut/releases/download/ActionBuild_2022.12.27_08-39-56/dmut
 
 chmod +x "${DIR}/bin/" -R
