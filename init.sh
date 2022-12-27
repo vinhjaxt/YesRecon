@@ -44,8 +44,8 @@ sh -c "cd '${DIR}/dnscan'; python3 -m pip install -r requirements.txt"
 export PATH="$PATH:${DIR}/bin"
 
 # test tools
-httpx --help
-amass --help
-subfinder --help
-findomain --help
-python3 "${DIR}/dnscan/dnscan.py" --help
+httpx --help | exit 1
+amass --help | exit 1
+subfinder --help | exit 1
+findomain --help | exit 1
+python3 "${DIR}/dnscan/dnscan.py" --help | exit 1
