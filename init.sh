@@ -41,6 +41,8 @@ find "${CURRENT_TMP}/" -type f -name 'findomain' -exec mv {} "${DIR}/bin/" \;
 git clone --depth 1 https://github.com/blechschmidt/massdns.git
 sh -c 'cd massdns && make'
 mv "${DIR}/massdns/bin/massdns" "${DIR}/bin/massdns"
+sudo cp "${DIR}/bin/massdns" /usr/bin/massdns
+sudo chmod +x /usr/bin/massdns
 curl -L -o "${DIR}/bin/puredns" https://github.com/vinhjaxt/puredns/releases/download/ActionBuild_2022.12.27_08-24-58/puredns
 # wordlist
 curl -L -o "${DIR}/puredns-all.txt" https://gist.githubusercontent.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
